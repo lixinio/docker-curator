@@ -1,0 +1,12 @@
+sudo: required
+
+lang: bash
+
+services:
+  - docker
+
+script:
+  - docker pull quay.io/pires/docker-elasticsearch-curator:5.5.1
+  - docker tag quay.io/pires/docker-elasticsearch-curator:5.5.1 lixinio/curator:5.5.1
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push lixinio/curator:5.5.1
